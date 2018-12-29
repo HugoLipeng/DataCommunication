@@ -1,4 +1,4 @@
-package com.example.servicedemo;
+package com.example.aidldemo;
 
 import org.junit.Test;
 

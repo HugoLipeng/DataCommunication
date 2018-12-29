@@ -20,11 +20,17 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
             Log.e("TAG","慕课");
-
+            IMyAidlInterface imai = IMyAidlInterface.Stub.asInterface(iBinder);
+            try {
+                imai.showProgress();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+            /*
             MyService.MyBinder mb = (MyService.MyBinder) iBinder;
             int step = mb.getProcess();
             Log.e("TAG","当前进度是：" + step);
-
+            */
         }
 
         //当客户端和服务的连接丢失了

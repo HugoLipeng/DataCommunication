@@ -48,8 +48,20 @@ public class MyService extends Service {
     //IBinder：在android中用于远程操作对象的一个基本接口
     @Override
     public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
         Log.e("TAG","服务绑定了");
-        return new MyBinder();
+        //Binder
+        return new IMyAidlInterface.Stub(){
+            @Override
+            public void basicTypes(int anInt, long aLong, boolean aBoolean, float aFloat, double aDouble, String aString) throws RemoteException {
+
+            }
+
+            @Override
+            public void showProgress() throws RemoteException {
+                Log.e("TAG","当前进度是" + i);
+            }
+        };
     }
 
     //对于onBind方法而言，要求返回IBinder对象

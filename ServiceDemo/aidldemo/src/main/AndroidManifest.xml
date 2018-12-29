@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.servicedemo">
+    package="com.example.aidldemo">
 
     <application
         android:allowBackup="true"
@@ -16,14 +16,16 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name=".MyService"
+        <receiver
+            android:name=".PhoneReceiver"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <action android:name="com.imooc.myservice"/>
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.PHONE_STATE"/>
             </intent-filter>
-        </service>
-    </application>
 
-</manifest>
+        </receiver>
+    </application>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    </manifest>
