@@ -1023,6 +1023,140 @@ b. 然后使用 BluetoothDevice 来获取 BluetoothSocket 并发起连接
 蓝牙4.0 ：BLE
 
 
+## Android数据通信开发与应用（三）：Android常用框架  
+### 第一节：ButterKnife实现View注入
+ButterKnife是一个专注于Android系统的View注入框架,以前总是要写很多findViewById来找到View对象，有了ButterKnife可以很轻松的省去这些步骤。  
+
+一、配置：  
+1、配置Project的 build.gradle 文件：  
+
+```
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.0.1' //注意版本，太高可能报错
+        classpath 'com.jakewharton:butterknife-gradle-plugin:8.5.1' //添加此行
+    }  
+```  
+
+2、配置Module的 build.gradle 文件：  
+
+```
+dependencies {
+    implementation 'com.jakewharton:butterknife:8.5.1' //加入此行
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1' //加入此行
+}
+apply plugin: 'com.jakewharton.butterknife' //加入此行
+注意：变更build.gradle文件后，别忘记点击右上角的Sync Now。
+```  
+
+二、使用：  
+1、绑定Activity控件  
+
+```
+public class MainActivity extends AppCompatActivity {
+ 
+    @BindView(R.id.textview01)
+    TextView mTextView01;
+    @BindView(R.id.button01)
+    Button mButton01;
+    @BindView(R.id.button02)
+    Button mButton02;
+    @BindString(R.string.test)
+    String mString;
+ 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+ 
+        ButterKnife.bind(this);
+ 
+        mTextView01.setText(mString);
+        mButton01.setText("按钮1");
+        mButton02.setText("按钮2");
+    }
+ 
+    @OnClick({R.id.button01,R.id.button02})
+    public void btnClick(View view){
+        switch (view.getId()){
+            case R.id.button01:
+                Toast.makeText(this, "按钮1按下", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.button02:
+                Toast.makeText(this, "按钮2按下", Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+}  
+```  
+
+2、绑定ListView  
+
+```
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        ViewHolder holder=null;
+        if(view==null){
+            view=mInflater.inflate(R.layout.item_of_listview,viewGroup,false);
+            holder=new ViewHolder(view);
+            view.setTag(holder);
+        }else{
+            holder= (ViewHolder) view.getTag();
+        }
+        holder.mTextView.setText(mDatas.get(i));
+        return view;
+    }
+ 
+    static class ViewHolder{
+        @BindView(R.id.item_of_listview)
+        TextView mTextView;
+ 
+        public ViewHolder(View view) {
+            ButterKnife.bind(this,view);
+        }
+    }  
+```  
+
+三、ButterKnife实用插件Android-butterknife-zelezny
+自动实现绑定控件、资源、事件。  
+
+1、插件安装：File->Settings->Plugins->Browse repositories->搜索"zelezny"->右侧Install  
+
+2、使用在资源上点击右键(如:R.layout.activity_main)->generate...->generate butterknife injections.  
+
+ 
+
+### 第二节：Loader异步加载框架  
+
+### 第三节：Glide图片流行框架  
+
+常用图像加载框架    
+Ø UniversalImageLoader  
+Ø Volley  
+Ø Picasso  
+Ø Fresco  
+Ø Glide  
+
+```
+DrawableRequestBuilder<String> thumbnailRequest = Glide
+                .with(this)
+                .load("http://img.mukewang.com/5518c3d7000175af06000338-300-170.jpg");
+        // 缩略图
+ 
+        Glide.with(this)
+                .load("http://img.mukewang.com/5518c3d7000175af06000338.jpg")//可以加载gif
+                .placeholder(R.drawable.default_pic)
+                .error(R.drawable.error_pic)
+                .crossFade()//过渡动画效果
+                .thumbnail(thumbnailRequest)//加载缩略图
+                .into(mGlideTestIV);
+        //有缓存功能，如果本地有缓存则不访问网络  
+```  
+
+diskCacheStrategy()只能避免缓存到硬盘中，需联合skipMemoryCache(true)避免缓存到内存，才可以避免Glide的缓存；
+
+
+### 第四节：Logger日志框架
+
 
 
 
