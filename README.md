@@ -1210,10 +1210,10 @@ Logger.d("hello");
 
 ## Android数据通信开发与应用（四）：实战开发  
 ### 第一节：RecyclerView列表流行控件
-一、RecyclerView是什么
+**一、RecyclerView是什么**  
 RecyclerView是support-v7包中的新组件，与经典的ListView相比，同样拥有item回收复用的功能。
 
-二、RecyclerView的优点
+**二、RecyclerView的优点**  
 RecyclerView是ListView的升级版，有如下优点：
 
 （一）RecyclerView封装了ViewHolder的回收复用
@@ -1225,7 +1225,7 @@ GridLayoutManager--类似于GridView的效果
 StaggeredGridLayoutManager--可以实现瀑布流的效果
 （三）可以控制Item增删的动画，并支持自定义动画
 
-三、编写一个简单的RecyclerView
+**三、编写一个简单的RecyclerView**  
 （一）准备容器
 
 1、导入RecyclerView依赖包
@@ -1234,7 +1234,47 @@ StaggeredGridLayoutManager--可以实现瀑布流的效果
 
 （二）准备数据
 
-（三）设置Adapter
+（三）设置Adapter  
+
+**编写Adapter**  
+
+* 创建一个类，集继承RecyclerView.Adapter  
+* 继承三个方法：
+  - onCreateViewHolder() - 创建视图
+  - onBindViewHolder() - 填充数据
+  - getItemCount() - 获取数量  
+* 写Item的xml布局  
+* 给item填充数据 
+
+**三种布局管理器的使用**  
+
+* LinearLayoutManager() - 线性式布局  
+* GridLayoutManager() - 表格式布局  
+* StaggerdGridLayoutManager() - 瀑布式布局  
+
+**设置Item的高度**  
+
+* 继承 RecycleView.ItemDecoration  
+* 重写getItemOffsets的方法  
+* 对参数outRect赋值  
+
+**显示不同的布局**  
+
+* 在实体类中添加一个类型的字段  
+* 复写getOtemViewType方法，返回具体类型  
+* 通过类型判断加载不同的ViewHolder  
+* 填充数据  
+
+**数据的添加、删除、刷新、动画**  
+
+* RecyclerView 添加默认动画：recyclerView.setItemAnimator(new DefaultItemAnimator());  
+* 添加动画： notifyItemInserted(position);
+* 删除动画： notifyItemRemoved(position);  
+
+**SwipeRefreshLayout**  
+<https://github.com/hanks-zyh/SwipeRefreshLayout>  
+第三方下拉刷新控件  
+
 
 ### 第二节：NDK入门
 ### 第三节：实战：有声阅读器
