@@ -1126,6 +1126,44 @@ public class MainActivity extends AppCompatActivity {
  
 
 ### 第二节：Loader异步加载框架  
+ 
+• Loaders机制在Android 3.0版本后引入。  
+• Loaders提供了异步加载数据的方法，能解决长时间数据加载
+的问题。  
+• 特点:  
+– 适用于任何Activity和Fragment;  
+– 提供了异步加载数据的机制;  
+– 检测数据源，当数据源内容改变时它们能够传递新的结果。  
+
+**相关API**   
+• LoaderManager  
+– 管理Loader，每个Activity或Fragment对应一个LoaderManager  
+• LoaderCallbacks  
+– 包含和Loader相关的回调方法  
+• AsyncTaskLoader  
+– 抽象类，提供异步加载的方法  
+• Cursors Loader  
+– AsyncTaskLoader的子类，提供游标数据的加载  
+
+**使用loader加载联系人**  
+1. 获得LoaderManager对象  
+2. 通过LoaderManager初始化Loader  
+3. 实现LoaderCallbacks接口  
+4. 在onCreateLoader方法中，创建CursorLoader  
+5. 在onLoadFinished方法中，获得加载数据，更新UI  
+
+**自定义loader**  
+问题:如果从网络中加载数据，返回的格式可能不是Cursor类型的，怎么办? 使用自定义Loader  
+步骤:  
+1. 继承AsyncTaskLoader类  
+2. 实现loadInBackground方法  
+3. 使用LoaderManager初始化Loader  
+4. 在LoaderCallbacks接口的onCreateLoader方法中返回自定义Loader  
+
+**源码分析**  
+• 从源码中可以看到:Loader中封装了AsyncTask用于异步加载   
+
+ 
 
 ### 第三节：Glide图片流行框架  
 
