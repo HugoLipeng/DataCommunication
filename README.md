@@ -1238,7 +1238,15 @@ StaggeredGridLayoutManager--可以实现瀑布流的效果
 
 ### 第二节：NDK入门
 ### 第三节：实战：有声阅读器
-### 第四节：扩展学习--GIF介绍
+### 第四节：扩展学习--GIF介绍  
+**GIF介绍**  
+GIF(Graphics Interchange Format)的原义是“图像互换格 式”，是CompuServe公司在 1987年开发的图像文件格式。GIF 文件的数据，是一种基于LZW算法的连续色调的无损压缩格式。 其压缩率一般在50%左右，它不属于任何应用程序。  
+
+**Android实现GIF**  
+Android我们提供了一个方便的工具:android.graphics.Movie  
+Movie的Api介绍:  
+<http://www.apihome.cn/api/android/Movie.html>  
+
 
 
 
