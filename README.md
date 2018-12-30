@@ -1157,6 +1157,37 @@ diskCacheStrategy()只能避免缓存到硬盘中，需联合skipMemoryCache(tru
 
 ### 第四节：Logger日志框架
 
+## Android数据通信开发与应用（四）：实战开发  
+### 第一节：RecyclerView列表流行控件
+一、RecyclerView是什么
+RecyclerView是support-v7包中的新组件，与经典的ListView相比，同样拥有item回收复用的功能。
+
+二、RecyclerView的优点
+RecyclerView是ListView的升级版，有如下优点：
+
+（一）RecyclerView封装了ViewHolder的回收复用
+
+（二）提供了一种插拔式的体验，高度的解耦，异常的灵活，内置了三种LayoutManager：
+
+LinearLayoutManager--横向或纵向滑动的列表
+GridLayoutManager--类似于GridView的效果
+StaggeredGridLayoutManager--可以实现瀑布流的效果
+（三）可以控制Item增删的动画，并支持自定义动画
+
+三、编写一个简单的RecyclerView
+（一）准备容器
+
+1、导入RecyclerView依赖包
+
+2、设置布局
+
+（二）准备数据
+
+（三）设置Adapter
+
+### 第二节：NDK入门
+### 第三节：实战：有声阅读器
+### 第四节：扩展学习--GIF介绍
 
 
 
