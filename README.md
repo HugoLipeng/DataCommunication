@@ -1193,7 +1193,20 @@ DrawableRequestBuilder<String> thumbnailRequest = Glide
 diskCacheStrategy()只能避免缓存到硬盘中，需联合skipMemoryCache(true)避免缓存到内存，才可以避免Glide的缓存；
 
 
-### 第四节：Logger日志框架
+### 第四节：Logger日志框架  
+github：<https://github.com/orhanobut/logger>  
+
+**使用**  
+1.导入依赖  
+compile 'com.orhanobut:logger:2.1.1'  
+
+2.初始化  
+Logger.addLogAdapter(new AndroidLogAdapter());  
+注：如果在Application中初始化，记得修改 AndroidManifest.xml 中 application 标签属性，添加 android:name=".MyApplication" ，不然不会打印。  
+
+3.使用   
+Logger.d("hello");  
+
 
 ## Android数据通信开发与应用（四）：实战开发  
 ### 第一节：RecyclerView列表流行控件
